@@ -1,0 +1,18 @@
+{
+    "name": "stevie-mayhew/hasoneedit",
+    "type": "silverstripe-module",
+    "description": "Allows editing the fields of a has_one object directly in the CMS",
+    "keywords": ["silverstripe", "has_one", "cms"],
+    "license": "WTFPL",
+    "authors": [{
+        "name": "Simon Welsh",
+        "email": "simon@simon.geek.nz",
+        "homepage": "http://simon.geek.nz"
+    }],
+    "require": {
+        "silverstripe/framework": "~3.0"
+    },
+    "replace" : {
+        "simonwelsh/hasoneedit": "*"
+    }
+}

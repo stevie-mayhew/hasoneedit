@@ -1,0 +1,13 @@
+---
+Name: hasoneedit
+After: '*'
+---
+CMSMain:
+  extensions:
+    - 'sgn_hasoneedit_UpdateFormExtension'
+GridFieldDetailForm_ItemRequest:
+  extensions:
+    - 'sgn_hasoneedit_UpdateFormExtension'
+DataObject:
+  extensions:
+    - 'sgn_hasoneedit_DataObjectExtension'
