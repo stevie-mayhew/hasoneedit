@@ -1,13 +1,13 @@
 ---
 Name: hasoneedit
-After: '*'
+After: framework/*
 ---
-CMSMain:
+SilverStripe\CMS\Controllers\CMSMain:
   extensions:
-    - 'sgn_hasoneedit_UpdateFormExtension'
-GridFieldDetailForm_ItemRequest:
+    - SGN\HasOneEdit\UpdateFormExtension
+SilverStripe\Forms\GridField\GridFieldDetailForm_ItemRequest:
   extensions:
-    - 'sgn_hasoneedit_UpdateFormExtension'
-DataObject:
+    - SGN\HasOneEdit\UpdateFormExtension
+SilverStripe\ORM\DataObject:
   extensions:
-    - 'sgn_hasoneedit_DataObjectExtension'
+    - SGN\HasOneEdit\DataObjectExtension
