@@ -13,7 +13,7 @@ class sgn_hasoneedit_DataObjectExtension extends DataExtension {
 			}
 			$value = (string)$value['after'];
 			list($hasone, $key) = explode(self::separator, $name, 2);
-			if($this->owner->has_one($hasone)) {
+			if($this->owner->has_one($hasone) || $this->owner->belongs_to($hasone)) {
 				$rel = $this->owner->getComponent($hasone);
 
 				// Get original:
