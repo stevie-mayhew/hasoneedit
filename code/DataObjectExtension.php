@@ -26,12 +26,10 @@ class DataObjectExtension extends DataExtension
 				continue;
 			}
 
-			$value = (string) $value['after'];
-
-			list($hasOne, $key) = explode(self::SEPARATOR, $name, 2);
-
-			if ($this->owner->hasOne($hasOne)) {
-				$rel = $this->owner->getComponent($hasOne);
+			$value = (string)$value['after'];
+			list($hasone, $key) = explode(self::separator, $name, 2);
+			if($this->owner->has_one($hasone) || $this->owner->belongs_to($hasone)) {
+				$rel = $this->owner->getComponent($hasone);
 
 				// Get original:
 				$original = (string) $rel->__get($key);
