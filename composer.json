@@ -10,9 +10,19 @@
         "homepage": "http://simon.geek.nz"
     }],
     "require": {
-        "silverstripe/framework": "~3.0"
+        "silverstripe/framework": "~4.0.0-alpha3"
     },
     "replace" : {
         "simonwelsh/hasoneedit": "*"
-    }
+    },
+    "autoload": {
+        "psr-4": {"SGN\\HasOneEdit\\": "code/"}
+    },
+    "extra": {
+        "branch-alias": {
+            "dev-master": "2.0.x-dev"
+        }
+    },
+    "prefer-stable": true,
+    "minimum-stability": "dev"
 }
