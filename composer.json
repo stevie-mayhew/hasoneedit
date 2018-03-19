@@ -1,6 +1,6 @@
 {
     "name": "stevie-mayhew/hasoneedit",
-    "type": "silverstripe-module",
+    "type": "silverstripe-vendormodule",
     "description": "Allows editing the fields of a has_one object directly in the CMS",
     "keywords": ["silverstripe", "has_one", "cms"],
     "license": "WTFPL",
