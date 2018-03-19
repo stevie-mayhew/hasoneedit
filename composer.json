@@ -10,7 +10,8 @@
         "homepage": "http://simon.geek.nz"
     }],
     "require": {
-        "silverstripe/framework": "~4.0.0-alpha3"
+        "silverstripe/vendor-plugin": "^1.0",
+        "silverstripe/framework": "^4.0"
     },
     "replace" : {
         "simonwelsh/hasoneedit": "*"
@@ -19,6 +20,7 @@
         "psr-4": {"SGN\\HasOneEdit\\": "code/"}
     },
     "extra": {
+        "installer-name": "hasoneedit",
         "branch-alias": {
             "dev-master": "2.0.x-dev"
         }
