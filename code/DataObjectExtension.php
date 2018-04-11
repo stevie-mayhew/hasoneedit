@@ -27,7 +27,7 @@ class DataObjectExtension extends DataExtension
 			}
 
 			$value = (string)$value['after'];
-			list($hasone, $key) = explode(self::separator, $name, 2);
+			list($hasone, $key) = explode(self::SEPARATOR, $name, 2);
 			if($this->owner->has_one($hasone) || $this->owner->belongs_to($hasone)) {
 				$rel = $this->owner->getComponent($hasone);
 
@@ -36,7 +36,7 @@ class DataObjectExtension extends DataExtension
 
 				if ($original !== $value) {
 					$rel->setCastedField($key, $value);
-					$toWrite[$hasOne] = $rel;
+					$toWrite[$hasone] = $rel;
 				}
 			}
 		}
