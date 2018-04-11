@@ -28,7 +28,7 @@ class DataObjectExtension extends DataExtension
 
 			$value = (string)$value['after'];
 			list($hasone, $key) = explode(self::SEPARATOR, $name, 2);
-			if($this->owner->has_one($hasone) || $this->owner->belongs_to($hasone)) {
+			if($this->owner->hasOne($hasone) || $this->owner->belongsTo($hasone)) {
 				$rel = $this->owner->getComponent($hasone);
 
 				// Get original:
