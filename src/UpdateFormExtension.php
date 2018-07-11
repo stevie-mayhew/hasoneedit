@@ -36,7 +36,8 @@ class UpdateFormExtension extends Extension
 
 			list($hasOne, $key) = explode(DataObjectExtension::SEPARATOR, $name, 2);
 
-			if ($record->hasOne($hasOne)) {
+			$relationType = $record->getRelationType($hasOne);
+			if ($relationType === 'has_one' || $relationType === 'belongs_to') {
 				$rel = $record->getComponent($hasOne);
 				// Copied from loadDataFrom()
 				$exists = (
@@ -46,7 +47,7 @@ class UpdateFormExtension extends Extension
 				);
 
 				if ($exists) {
-					$value = $rel->__get($key);
+					$value = $rel->{$key};
 					$field->setValue($value);
 				}
 			}
