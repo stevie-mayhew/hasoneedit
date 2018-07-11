@@ -14,7 +14,7 @@ class UpdateFormExtension extends Extension
 	{
 		$record = $form->getRecord();
 		$fields = $form->Fields()->dataFields();
-		
+
 		foreach ($fields as $name => $field) {
 			$name = str_replace(array(':', '/'), DataObjectExtension::SEPARATOR, $name);
 

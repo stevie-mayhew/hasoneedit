@@ -16,7 +16,7 @@
         "simonwelsh/hasoneedit": "*"
     },
     "autoload": {
-        "psr-4": {"SGN\\HasOneEdit\\": "code/"}
+        "psr-4": {"SGN\\HasOneEdit\\": "src/"}
     },
     "extra": {
         "branch-alias": {
