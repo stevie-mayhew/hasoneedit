@@ -28,7 +28,7 @@ class sgn_hasoneedit_DataObjectExtension extends DataExtension {
 				$rel = $this->owner->getComponent($hasOne);
 
 				// Get original:
-				$original = (string) $rel->__get($key);
+				$original = (string) $rel->{$key};
 
 				if ($original !== $value) {
 					$rel->setCastedField($key, $value);

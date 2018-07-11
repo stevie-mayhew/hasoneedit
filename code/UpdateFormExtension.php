@@ -41,7 +41,7 @@ class sgn_hasoneedit_UpdateFormExtension extends Extension {
 				);
 
 				if ($exists) {
-					$value = $rel->__get($key);
+					$value = $rel->{$key};
 					$field->setValue($value);
 				}
 			}
