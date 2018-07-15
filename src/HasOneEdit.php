@@ -1,0 +1,73 @@
+<?php
+
+namespace SGN\HasOneEdit;
+use SilverStripe\ORM\DataObject;
+
+/**
+ * Class HasOneEdit
+ * @package SGN\HasOneEdit
+ */
+class HasOneEdit
+{
+    /**
+     *
+     */
+    const FIELD_SEPARATOR = '-_1_-';
+
+    /**
+     *
+     */
+    const SUPPORTED_SEPARATORS = [
+        self::FIELD_SEPARATOR,
+        ':',
+        '/',
+    ];
+
+    /**
+     * @param \SilverStripe\Forms\FormField|string $fieldName
+     * @return string[] Array of [relation name, field on relation]
+     */
+    public static function getRelationNameAndField($field)
+    {
+        if (!is_string($field)) {
+            $field = $field->getName();
+        }
+
+        return explode(static::FIELD_SEPARATOR, $field, 2);
+    }
+
+    /**
+     * @param \SilverStripe\ORM\DataObject $parent
+     * @param string $relationName
+     * @return \SilverStripe\ORM\DataObject|null
+     */
+    public static function getRelationRecord(DataObject $parent, $relationName)
+    {
+        $relationType = $parent->getRelationType($relationName);
+        return $relationType === 'has_one' || $relationType === 'belongs_to'
+            ? $parent->getComponent($relationName)
+            : null;
+    }
+
+    /**
+     * @param \SilverStripe\Forms\FormField|string $field
+     * @return bool
+     */
+    public static function isHasOneEditField($field)
+    {
+        if (!is_string($field)) {
+            $field = $field->getName();
+        }
+
+        return boolval(strpos($field, static::FIELD_SEPARATOR));
+    }
+
+    /**
+     * @param string $fieldName
+     * @return string
+     */
+    public static function normaliseSeparator($fieldName)
+    {
+        return str_replace(static::SUPPORTED_SEPARATORS, static::FIELD_SEPARATOR, $fieldName);
+    }
+}

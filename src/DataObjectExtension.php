@@ -3,54 +3,34 @@
 namespace SGN\HasOneEdit;
 
 use SilverStripe\ORM\DataExtension;
+use SilverStripe\ORM\DataObject;
 
 class DataObjectExtension extends DataExtension
 {
-	/**
-	 * @var string
-	 */
-	const SEPARATOR = '-_1_-';
+    /**
+     * @see \SilverStripe\ORM\DataObject::onBeforeWrite()
+     */
+    public function onBeforeWrite()
+    {
+        $changed = $this->owner->getChangedFields();
+        $toWrite = [];
 
-	/**
-	 * @see {@link SilverStripe\ORM\DataObject->onBeforeWrite()}
-	 */
-	public function onBeforeWrite()
-	{
-		$changed = $this->owner->getChangedFields();
-		$toWrite = array();
+        foreach ($changed as $name => $value) {
+            if (!HasOneEdit::isHasOneEditField($name)) continue;
 
-		foreach ($changed as $name => $value) {
+            list($relationName, $fieldOnRelation) = HasOneEdit::getRelationNameAndField($name);
+            $relatedObject = HasOneEdit::getRelationRecord($this->owner, $relationName);
+            if ($relatedObject === null) continue;
 
-			if (!strpos($name, self::SEPARATOR)) {
-				// Also skip $name that starts with a separator
-				continue;
-			}
+            $relatedObject->setCastedField($fieldOnRelation, $value['after']);
+            if ($relatedObject->isChanged(null, DataObject::CHANGE_VALUE)) {
+                $toWrite[$relationName] = $relatedObject;
+            }
+        }
 
-			$value = (string)$value['after'];
-			list($hasone, $key) = explode(self::SEPARATOR, $name, 2);
-
-			$relationType = $this->owner->getRelationType($hasone);
-			if ($relationType === 'has_one' || $relationType === 'belongs_to') {
-				$rel = $this->owner->getComponent($hasone);
-
-				// Get original:
-				$original = (string) $rel->{$key};
-
-				if ($original !== $value) {
-					$rel->setCastedField($key, $value);
-					$toWrite[$hasone] = $rel;
-				}
-			}
-		}
-
-		foreach ($toWrite as $rel => $obj) {
-			$obj->write();
-
-			$key = $rel . 'ID';
-
-			if (!$this->owner->$key) {
-				$this->owner->$key = $obj->ID;
-			}
-		}
-	}
+        foreach ($toWrite as $relationName => $obj) {
+            $obj->write();
+            $this->owner->setField("{$relationName}ID", $obj->ID);
+        }
+    }
 }
