@@ -20,7 +20,7 @@ class HasOneEdit
     ];
 
     /**
-     * @param FormField|string $fieldName
+     * @param FormField|string $field
      * @return string[] Array of [relation name, field on relation]
      */
     public static function getRelationNameAndField($field)
@@ -39,7 +39,7 @@ class HasOneEdit
      */
     public static function getRelationRecord(DataObject $parent, $relationName)
     {
-        return ($parent->hasOne($relationName) || $parent->belongsTo($relationName))
+        return ($parent->hasOneComponent($relationName) || $parent->belongsToComponent($relationName, false))
             ? $parent->getComponent($relationName)
             : null;
     }
