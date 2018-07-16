@@ -24,7 +24,7 @@ class HasOneEdit
     ];
 
     /**
-     * @param \SilverStripe\Forms\FormField|string $fieldName
+     * @param \SilverStripe\Forms\FormField|string $field
      * @return string[] Array of [relation name, field on relation]
      */
     public static function getRelationNameAndField($field)
@@ -43,8 +43,7 @@ class HasOneEdit
      */
     public static function getRelationRecord(DataObject $parent, $relationName)
     {
-        $relationType = $parent->getRelationType($relationName);
-        return $relationType === 'has_one' || $relationType === 'belongs_to'
+        return array_key_exists($relationName, $parent->hasOne()) || array_key_exists($relationName, $parent->belongsTo(false))
             ? $parent->getComponent($relationName)
             : null;
     }
