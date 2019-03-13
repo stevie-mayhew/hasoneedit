@@ -5,10 +5,6 @@
  */
 class HasOneUploadField extends UploadField
 {
-    /**
-     * @var null|bool
-     */
-//    private $hasOneMultiUpload = null;
 
     /**
      * HasOneUploadField constructor.
@@ -28,27 +24,6 @@ class HasOneUploadField extends UploadField
             $this->{$prop} = $value;
         }
     }
-
-    /**
-     * Check if allowed to upload more than one file
-     * @see UploadField::getIsMultiUpload()
-     * @return bool
-     */
-    /*
-    public function getIsMultiUpload()
-    {
-        if ($this->hasOneMultiUpload === null) {
-            // Guess from record
-            list($relationName, $fieldOnRelation) = HasOneEdit::getRelationNameAndField($this);
-            $relatedObject = HasOneEdit::getRelationRecord($this->getRecord(), $relationName);
-
-            // Multi-upload disabled for has_one components
-            $this->hasOneMultiUpload = !($relatedObject && DataObject::getSchema()->hasOneComponent($relatedObject, $fieldOnRelation));
-        }
-
-        return $this->hasOneMultiUpload;
-    }
-    */
 
     /**
      * @see UploadField::saveInto()
