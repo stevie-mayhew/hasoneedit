@@ -65,4 +65,16 @@ class HasOneEdit
     {
         return str_replace(static::SUPPORTED_SEPARATORS, static::FIELD_SEPARATOR, $fieldName);
     }
+
+    /**
+     * @param DataObject $parent
+     * @param string $relation
+     * @return FieldList|FormField[]
+     */
+    public static function getInlineFields(DataObject $parent, $relation)
+    {
+        /** @var DataObject|ProvidesHasOneInlineFields $relatedObject */
+        $relatedObject = static::getRelationRecord($parent, $relation);
+        return $relatedObject->provideHasOneInlineFields($relation);
+    }
 }
