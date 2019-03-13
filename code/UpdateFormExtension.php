@@ -36,8 +36,15 @@ class sgn_hasoneedit_UpdateFormExtension extends Extension {
             $relatedObject = HasOneEdit::getRelationRecord($record, $relationName);
             if ($relatedObject === null) continue;
 
-            if ($relatedObject->hasField($fieldOnRelation)) {
-                $field->setValue($relatedObject->getField($fieldOnRelation));
+            if ($field instanceof HasOneUploadField) {
+                if ($relatedObject->hasField("{$fieldOnRelation}ID")) {
+                    $field->setValue([ 'Files' => [ $relatedObject->getField("{$fieldOnRelation}ID") ] ]);
+                }
+
+            } else {
+                if ($relatedObject->hasField($fieldOnRelation)) {
+                    $field->setValue($relatedObject->getField($fieldOnRelation));
+                }
             }
 
 		}
