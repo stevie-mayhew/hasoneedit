@@ -1,35 +1,33 @@
 <?php
 
 class sgn_hasoneedit_DataObjectExtension extends DataExtension {
-	const separator = '-_1_-';
 
-	public function onBeforeWrite() {
+	/**
+	 * @see DataObject::onBeforeWrite}
+	 */
+	public function onBeforeWrite()
+	{
 		$changed = $this->owner->getChangedFields();
-		$toWrite = array();
-		foreach($changed as $name => $value) {
-			if(!strpos($name, self::separator)) {
-				// Also skip $name that starts with a separator
-				continue;
-			}
-			$value = (string)$value['after'];
-			list($hasone, $key) = explode(self::separator, $name, 2);
-			if($this->owner->has_one($hasone) || $this->owner->belongs_to($hasone)) {
-				$rel = $this->owner->getComponent($hasone);
+		$toWrite = [];
 
-				// Get original:
-				$original = (string)$rel->__get($key);
-				if($original !== $value) {
-					$rel->setCastedField($key, $value);
-					$toWrite[$hasone] = $rel;
-				}
-			}
+		foreach ($changed as $name => $value) {
+            if (!HasOneEdit::isHasOneEditField($name)) continue;
+
+            list($relationName, $fieldOnRelation) = HasOneEdit::getRelationNameAndField($name);
+            $relatedObject = HasOneEdit::getRelationRecord($this->owner, $relationName);
+            if ($relatedObject === null) continue;
+
+            $relatedObject->setCastedField($fieldOnRelation, $value['after']);
+            if ($relatedObject->isChanged(null, DataObject::CHANGE_VALUE)) {
+                $toWrite[$relationName] = $relatedObject;
+            }
+
 		}
-		foreach($toWrite as $rel => $obj) {
+
+		foreach ($toWrite as $relationName => $obj) {
 			$obj->write();
-			$key = $rel . 'ID';
-			if(!$this->owner->$key) {
-				$this->owner->$key = $obj->ID;
-			}
+            $this->owner->setField("{$relationName}ID", $obj->ID);
 		}
 	}
+
 }
