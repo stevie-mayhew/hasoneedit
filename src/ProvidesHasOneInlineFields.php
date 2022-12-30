@@ -18,11 +18,13 @@ trait ProvidesHasOneInlineFields
         $fields = $this->getCMSFields()->dataFields();
         $restrictions = [];
         if ($dbFieldsOnly) {
-            $restrictions = $this->Config()->get('db');
+            $restrictions = array_keys($this->Config()->get('db'));
         }
         foreach ($fields as $name => $field) {
             if (empty($restrictions) || in_array($name, $restrictions)) {
                 $field->setName($relationName . HasOneEdit::FIELD_SEPARATOR . $field->getName());
+            } else {
+                unset($fields[$name]);
             }
         }
 
