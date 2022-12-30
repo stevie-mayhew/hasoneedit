@@ -75,10 +75,10 @@ class HasOneEdit
      * @param string $relation
      * @return \SilverStripe\Forms\FieldList|\SilverStripe\Forms\FormField[]
      */
-    public static function getInlineFields(DataObject $parent, $relation)
+    public static function getInlineFields(DataObject $parent, string $relation, ?bool $dbFieldsOnly = false)
     {
         /** @var \SilverStripe\ORM\DataObject|\SGN\HasOneEdit\ProvidesHasOneInlineFields $relatedObject */
         $relatedObject = static::getRelationRecord($parent, $relation);
-        return $relatedObject->provideHasOneInlineFields($relation);
+        return $relatedObject->provideHasOneInlineFields($relation, $dbFieldsOnly);
     }
 }
