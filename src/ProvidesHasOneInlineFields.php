@@ -25,11 +25,20 @@ trait ProvidesHasOneInlineFields
         $finalFieldsToShow = [];
         if (count($fieldsToShow) > 0) {
             foreach ($fieldsToShow as $fieldsToShowEntry) {
-                $relList = array_keys($this->Config()->get($fieldsToShowEntry));
-                $list = is_array($relList) ? $relList : [$fieldsToShowEntry];
+                if(in_array($fieldsToShowEntry, ['db', 'has_one', 'has_many', 'many_many', 'belongs_to', 'belongs_many_many'])) {
+                    $relList = $this->Config()->get($fieldsToShowEntry);
+                    if(is_array($relList) ) {
+                        $fieldsToShowEntry = array_keys($relList);
+                    } else {
+                        $fieldsToShowEntry = [];
+                    }
+                } else {
+
+                }
+                $fieldsToShowEntry = is_array($fieldsToShowEntry) ? $fieldsToShowEntry : [$fieldsToShowEntry];
                 $finalFieldsToShow = array_merge(
                     $finalFieldsToShow,
-                    $list
+                    $fieldsToShowEntry
                 );
             }
         }
