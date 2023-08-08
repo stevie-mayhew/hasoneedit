@@ -71,14 +71,21 @@ class HasOneEdit
     }
 
     /**
+
      * @param \SilverStripe\ORM\DataObject $parent
      * @param string $relation
+     * @param array $fieldsToShow
+     *               If nothing is provided, all getCMSFields dataFields will show.
+     *               You can set fields to show by providing
+     *               db, has_one, many_many, etc. OR
+     *               You can also set the names of actual fields - e.g. MyTitle, Notes, etc.
      * @return \SilverStripe\Forms\FieldList|\SilverStripe\Forms\FormField[]
      */
-    public static function getInlineFields(DataObject $parent, string $relation, ?bool $dbFieldsOnly = false)
+    public static function getInlineFields(DataObject $parent, string $relation, ?array $fieldsToShow = [])
     {
         /** @var \SilverStripe\ORM\DataObject|\SGN\HasOneEdit\ProvidesHasOneInlineFields $relatedObject */
         $relatedObject = static::getRelationRecord($parent, $relation);
-        return $relatedObject->provideHasOneInlineFields($relation, $dbFieldsOnly);
+
+        return $relatedObject->provideHasOneInlineFields($relation, $fieldsToShow);
     }
 }

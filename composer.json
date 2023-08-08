@@ -10,8 +10,8 @@
         "homepage": "http://simon.geek.nz"
     }],
     "require": {
-        "silverstripe/framework": "^4.0",
-        "silverstripe/asset-admin": "^1.0"
+        "silverstripe/framework": "~4.0 || ~5.0",
+        "silverstripe/asset-admin": "~1.0 || ~2.0"
     },
     "replace" : {
         "simonwelsh/hasoneedit": "*"

@@ -1,6 +1,6 @@
 ---
 Name: hasoneedit
-After: framework/*
+After: '#coreextensions'
 ---
 SilverStripe\CMS\Controllers\CMSMain:
   extensions:
