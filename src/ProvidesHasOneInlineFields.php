@@ -32,9 +32,7 @@ trait ProvidesHasOneInlineFields
                     } else {
                         $fieldsToShowEntry = [];
                     }
-                } else {
-
-                }
+                } 
                 $fieldsToShowEntry = is_array($fieldsToShowEntry) ? $fieldsToShowEntry : [$fieldsToShowEntry];
                 $finalFieldsToShow = array_merge(
                     $finalFieldsToShow,
