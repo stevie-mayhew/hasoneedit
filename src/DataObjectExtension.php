@@ -2,6 +2,7 @@
 
 namespace Sunnysideup\HasOneEdit;
 
+use SilverStripe\Core\Config\Config;
 use SilverStripe\ORM\DataExtension;
 use SilverStripe\ORM\DataObject;
 
@@ -42,7 +43,7 @@ class DataObjectExtension extends DataExtension
     private function checkIfFieldHasChangeForHasOnedEdit($relatedObject, $fieldOnRelation, $value)
     {
         $relatedObject->setCastedField($fieldOnRelation, $value['after']);
-        $dbs = $relatedObject->stat('db');
+        $dbs = Config::inst()->get($relatedObject->ClassName, 'db');
         $type = $dbs[$fieldOnRelation] ?? '';
 
         // special case for Enum
