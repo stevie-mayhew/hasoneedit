@@ -1,5 +1,5 @@
 {
-    "name": "stevie-mayhew/hasoneedit",
+    "name": "sunnysideup/hasoneedit",
     "type": "silverstripe-vendormodule",
     "description": "Allows editing the fields of a has_one object directly in the CMS",
     "keywords": ["silverstripe", "has_one", "cms"],
@@ -14,10 +14,11 @@
         "silverstripe/asset-admin": "~1.0 || ~2.0"
     },
     "replace" : {
-        "simonwelsh/hasoneedit": "*"
+        "simonwelsh/hasoneedit": "*",
+        "stevie-mayhew/hasoneedit": "*"
     },
     "autoload": {
-        "psr-4": {"SGN\\HasOneEdit\\": "src/"}
+        "psr-4": {"Sunnysideup\\HasOneEdit\\": "src/"}
     },
     "extra": {
         "branch-alias": {
