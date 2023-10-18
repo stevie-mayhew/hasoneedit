@@ -35,4 +35,4 @@ This method will be called by `HasOneEdit::getInlineFields` even if your class d
 
 ### Using with your own form
 
-To add support to your own forms, you need to add the `SGN\HasOneEdit\UpdateFormExtension` extension to your controller and call `$this->extend('updateEditForm', $form)` before returning the form to the template. Without this, the fields will not get populated with the values from the `has_one` though saving will work.
+To add support to your own forms, you need to add the `Sunnysideup\HasOneEdit\UpdateFormExtension` extension to your controller and call `$this->extend('updateEditForm', $form)` before returning the form to the template. Without this, the fields will not get populated with the values from the `has_one` though saving will work.

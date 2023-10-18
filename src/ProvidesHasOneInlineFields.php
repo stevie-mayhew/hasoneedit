@@ -1,15 +1,14 @@
 <?php
 
-namespace SGN\HasOneEdit;
+namespace Sunnysideup\HasOneEdit;
 
 /**
  * Trait ProvidesHasOneInlineFields
- * @package SGN\HasOneEdit
+ * @package Sunnysideup\HasOneEdit
  * @mixin \SilverStripe\ORM\DataObject
  */
 trait ProvidesHasOneInlineFields
 {
-
     /**
      * @param string $relationName
      * @param array $fieldsToShow
@@ -27,12 +26,12 @@ trait ProvidesHasOneInlineFields
             foreach ($fieldsToShow as $fieldsToShowEntry) {
                 if(in_array($fieldsToShowEntry, ['db', 'has_one', 'has_many', 'many_many', 'belongs_to', 'belongs_many_many'])) {
                     $relList = $this->Config()->get($fieldsToShowEntry);
-                    if(is_array($relList) ) {
+                    if(is_array($relList)) {
                         $fieldsToShowEntry = array_keys($relList);
                     } else {
                         $fieldsToShowEntry = [];
                     }
-                } 
+                }
                 $fieldsToShowEntry = is_array($fieldsToShowEntry) ? $fieldsToShowEntry : [$fieldsToShowEntry];
                 $finalFieldsToShow = array_merge(
                     $finalFieldsToShow,

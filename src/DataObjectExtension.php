@@ -1,6 +1,6 @@
 <?php
 
-namespace SGN\HasOneEdit;
+namespace Sunnysideup\HasOneEdit;
 
 use SilverStripe\ORM\DataExtension;
 use SilverStripe\ORM\DataObject;
@@ -39,7 +39,8 @@ class DataObjectExtension extends DataExtension
         }
     }
 
-    private function checkIfFieldHasChangeForHasOnedEdit($relatedObject, $fieldOnRelation, $value) {
+    private function checkIfFieldHasChangeForHasOnedEdit($relatedObject, $fieldOnRelation, $value)
+    {
         $relatedObject->setCastedField($fieldOnRelation, $value['after']);
         $dbs = $relatedObject->stat('db');
         $type = $dbs[$fieldOnRelation] ?? '';

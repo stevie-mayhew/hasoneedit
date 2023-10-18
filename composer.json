@@ -2,27 +2,40 @@
     "name": "sunnysideup/hasoneedit",
     "type": "silverstripe-vendormodule",
     "description": "Allows editing the fields of a has_one object directly in the CMS",
-    "keywords": ["silverstripe", "has_one", "cms"],
+    "keywords": [
+        "silverstripe",
+        "has_one",
+        "cms",
+        "silverstripe",
+        "Cms",
+        "SilverStripe CMS",
+        "HasOne",
+        "Has one",
+        "Form Fields"
+    ],
     "license": "WTFPL",
-    "authors": [{
-        "name": "Simon Welsh",
-        "email": "simon@simon.geek.nz",
-        "homepage": "http://simon.geek.nz"
-    }],
+    "authors": [
+        {
+            "name": "Simon Welsh",
+            "email": "simon@simon.geek.nz",
+            "homepage": "http://simon.geek.nz"
+        },
+        {
+            "name": "Stevie Mayhew",
+            "email": "NotSure@somewhere-in-a-universe-not-far-from-here.com"
+        }
+    ],
     "require": {
         "silverstripe/framework": "~4.0 || ~5.0",
         "silverstripe/asset-admin": "~1.0 || ~2.0"
     },
-    "replace" : {
+    "replace": {
         "simonwelsh/hasoneedit": "*",
         "stevie-mayhew/hasoneedit": "*"
     },
     "autoload": {
-        "psr-4": {"Sunnysideup\\HasOneEdit\\": "src/"}
-    },
-    "extra": {
-        "branch-alias": {
-            "dev-master": "2.0.x-dev"
+        "psr-4": {
+            "Sunnysideup\\HasOneEdit\\": "src/"
         }
     },
     "prefer-stable": true,
