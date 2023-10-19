@@ -66,9 +66,9 @@ class HasOneEdit
      * @param string $fieldName
      * @return string
      */
-    public static function normaliseSeparator($fieldName)
+    public static function normaliseSeparator(string $fieldName): string
     {
-        return str_replace(static::SUPPORTED_SEPARATORS, static::FIELD_SEPARATOR, $fieldName);
+        return str_replace(static::SUPPORTED_SEPARATORS, static::FIELD_SEPARATOR, (string) $fieldName);
     }
 
     /**
