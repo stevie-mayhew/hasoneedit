@@ -4,10 +4,10 @@ After: '#coreextensions'
 ---
 SilverStripe\CMS\Controllers\CMSMain:
   extensions:
-    - SGN\HasOneEdit\UpdateFormExtension
+    - Sunnysideup\HasOneEdit\UpdateFormExtension
 SilverStripe\Forms\GridField\GridFieldDetailForm_ItemRequest:
   extensions:
-    - SGN\HasOneEdit\UpdateFormExtension
+    - Sunnysideup\HasOneEdit\UpdateFormExtension
 SilverStripe\ORM\DataObject:
   extensions:
-    - SGN\HasOneEdit\DataObjectExtension
+    - Sunnysideup\HasOneEdit\DataObjectExtension

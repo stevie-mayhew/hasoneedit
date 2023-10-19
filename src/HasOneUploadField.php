@@ -1,6 +1,6 @@
 <?php
 
-namespace SGN\HasOneEdit;
+namespace Sunnysideup\HasOneEdit;
 
 use SilverStripe\AssetAdmin\Forms\UploadField;
 use SilverStripe\Assets\File;

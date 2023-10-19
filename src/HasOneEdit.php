@@ -1,23 +1,24 @@
 <?php
 
-namespace SGN\HasOneEdit;
+namespace Sunnysideup\HasOneEdit;
+
 use SilverStripe\ORM\DataObject;
 
 /**
  * Class HasOneEdit
- * @package SGN\HasOneEdit
+ * @package Sunnysideup\HasOneEdit
  */
 class HasOneEdit
 {
     /**
      *
      */
-    const FIELD_SEPARATOR = '-_1_-';
+    public const FIELD_SEPARATOR = '-_1_-';
 
     /**
      *
      */
-    const SUPPORTED_SEPARATORS = [
+    public const SUPPORTED_SEPARATORS = [
         self::FIELD_SEPARATOR,
         ':',
         '/',
@@ -65,9 +66,9 @@ class HasOneEdit
      * @param string $fieldName
      * @return string
      */
-    public static function normaliseSeparator($fieldName)
+    public static function normaliseSeparator(string $fieldName): string
     {
-        return str_replace(static::SUPPORTED_SEPARATORS, static::FIELD_SEPARATOR, $fieldName);
+        return str_replace(static::SUPPORTED_SEPARATORS, static::FIELD_SEPARATOR, (string) $fieldName);
     }
 
     /**
@@ -83,7 +84,7 @@ class HasOneEdit
      */
     public static function getInlineFields(DataObject $parent, string $relation, ?array $fieldsToShow = [])
     {
-        /** @var \SilverStripe\ORM\DataObject|\SGN\HasOneEdit\ProvidesHasOneInlineFields $relatedObject */
+        /** @var \SilverStripe\ORM\DataObject|\Sunnysideup\HasOneEdit\ProvidesHasOneInlineFields $relatedObject */
         $relatedObject = static::getRelationRecord($parent, $relation);
 
         return $relatedObject->provideHasOneInlineFields($relation, $fieldsToShow);
