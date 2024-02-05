@@ -11,3 +11,13 @@ SilverStripe\Forms\GridField\GridFieldDetailForm_ItemRequest:
 SilverStripe\ORM\DataObject:
   extensions:
     - SGN\HasOneEdit\DataObjectExtension
+
+---
+Name: hasoneedit-siteconfig
+After: '#coreextensions'
+Only:
+  moduleexists: 'silverstripe/siteconfig'
+---
+SilverStripe\SiteConfig\SiteConfigLeftAndMain:
+  extensions:
+    - SGN\HasOneEdit\UpdateFormExtension
